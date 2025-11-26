@@ -1,5 +1,5 @@
 # ---- settings ----
-NAME     := MoarBrainz
+NAME     := ex01
 CXX      := c++
 CXXFLAGS := -Wall -Wextra -Werror -std=c++98 -pedantic
 
