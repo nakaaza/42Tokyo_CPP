@@ -17,7 +17,7 @@ int	main(int argc, char **argv)
 	std::string	filename = argv[1];
 	if (!read_content(filename, content))
 		return (1);
-	std::string	replaced = replace_str(content, argv[2], argv[3]);
+	std::string	replaced = replace_str(content, replace_str(argv[2], "\\n", "\n"), replace_str(argv[3], "\\n", "\n"));
 	std::string	newfile = filename + ".replace";
 	if (!write_content(newfile, replaced))
 		return (1);
@@ -36,7 +36,6 @@ bool read_content(const std::string &filename, std::string &content)
     std::string line;
     while (std::getline(ifs, line))
         tmp += line + '\n';
-	// TODO: 最終行の改行削除
     if (!ifs.eof())
     {
         std::cerr << "Error: Cannot read content: " << filename << std::endl;
@@ -51,13 +50,11 @@ std::string	replace_str(std::string content, const std::string s1, const std::st
 	std::string	tmp;
 	size_t		pos;
 
-	while (content != "\0" && (pos = content.find(s1, 0)) != std::string::npos)
+	while (!content.empty() && (pos = content.find(s1, 0)) != std::string::npos)
 	{
 		tmp += content.substr(0, pos);
 		tmp += s2;
 		content = content.substr(pos + s1.length(), std::string::npos);
-		// std::cout << "pos = " << pos << ";\ttmp = " << tmp << ";" << std::endl;
-		// TODO: 改行末尾の場合の処理
 	}
 	if (content != "\0")
 		tmp += content;
