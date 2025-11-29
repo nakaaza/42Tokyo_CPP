@@ -3,7 +3,6 @@
 int	main(int argc, char **argv)
 {
 	int	i = 0;
-	int	j;
 
 	if (argc == 1)
 	{
@@ -12,9 +11,10 @@ int	main(int argc, char **argv)
 	}
 	while (++i < argc)
 	{
-		j = -1;
-		while (argv[i][++j] != '\0')
-			std::cout << static_cast<char>(std::toupper(argv[i][j]));
+		std::size_t	j = 0;
+		std::string	s(argv[i]);
+		while (j < s.length())
+			std::cout << static_cast<char>(std::toupper(s[j++]));
 	}
 	std::cout << std::endl;
 	return (0);
