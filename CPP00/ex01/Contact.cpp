@@ -41,7 +41,6 @@ void	Contact::show_summary()
 	std::cout << "|" << trunc_to_10(this->first_name);
 	std::cout << "|" << trunc_to_10(this->last_name);
 	std::cout << "|" << trunc_to_10(this->nickname);
-	std::cout << "|" << trunc_to_10(this->phone_number);
 	std::cout << "|" << std::endl;
 }
 

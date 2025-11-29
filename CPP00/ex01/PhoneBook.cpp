@@ -63,15 +63,12 @@ void	PhoneBook::show_list()
 	std::cout << "-----------";
 	std::cout << "-----------";
 	std::cout << "-----------";
-	std::cout << "-----------";
 	std::cout << "|" << std::endl;
 	std::cout << "|" << "     index";
 	std::cout << "|" << "first_name";
 	std::cout << "|" << " last_name";
 	std::cout << "|" << "  nickname";
-	std::cout << "|" << "phone_num.";
 	std::cout << "|" << std::endl;
-	std::cout << "|" << "----------";
 	std::cout << "|" << "----------";
 	std::cout << "|" << "----------";
 	std::cout << "|" << "----------";
@@ -86,7 +83,6 @@ void	PhoneBook::show_list()
 		this->list[i].show_summary();
 	}
 	std::cout << "|----------";
-	std::cout << "-----------";
 	std::cout << "-----------";
 	std::cout << "-----------";
 	std::cout << "-----------";
