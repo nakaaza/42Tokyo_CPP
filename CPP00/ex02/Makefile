@@ -5,7 +5,7 @@ CXXFLAGS := -Wall -Wextra -Werror -std=c++98 -pedantic
 
 OBJ_DIR  := obj
 
-SRCS     := test.cpp Account.cpp
+SRCS     := tests.cpp Account.cpp
 OBJS     := $(SRCS:%.cpp=$(OBJ_DIR)/%.o)
 DEPS     := $(OBJS:.o=.d)
 
