@@ -3,9 +3,8 @@
 
 const int	Fixed::frac_bits = FRAC_BITS
 
-Fixed::Fixed() {
+Fixed::Fixed(): val(0) {
 	std::cout << "Default constructor called" << std::endl;
-	this->val = 0;
 	return ; 
 }
 
@@ -16,10 +15,8 @@ Fixed::Fixed(const Fixed &src) {
 
 Fixed &Fixed::operator=(const Fixed &rhs) {
 	std::cout << "Copy assignment operator called" << std::endl;
-	if (this != &rhs) {
-		// TODO: copy member variables here
+	if (this != &rhs)
 		this->setRawBits(rhs.getRawBits());
-	}
 	return *this;
 }
 
@@ -30,13 +27,11 @@ Fixed::~Fixed() {
 
 int		Fixed::getRawBits(void) const {
 	std::cout << "getRawBits member function called" << std::endl;
-	// TODO
 	return (this->val);
 }
 
 void	Fixed::setRawBits(int const raw) {
 	// std::cout << "setRawBits member function called" << std::endl;
-	// TODO
 	this->val = raw;
 	return ;
 }
