@@ -26,12 +26,12 @@ Fixed::Fixed(const int ini_val) {
 Fixed::Fixed(const float ini_val) {
 	std::cout << "Float constructor called" << std::endl;
 	float	scale = static_cast<float>(1 << Fixed::frac_bits);
-	// TODO: check float overflow
 	float	scaled = ini_val * scale;
 
-	if (scaled == NAN)
+	if (scaled != scaled)
 		throw std::overflow_error("Fixed: NaN is out of range");
-	if (scaled == INFINITY || scaled == -INFINITY)
+	if (scaled == std::numeric_limits<float>::infinity()
+		|| scaled == -std::numeric_limits<float>::infinity())
 		throw std::overflow_error("Fixed: INFINITY is out of range");
 	if (scaled < static_cast<float>(FIXED_MIN)
 		|| static_cast<float>(FIXED_MAX) < scaled)
@@ -75,8 +75,8 @@ int		Fixed::toInt(void) const {
 	return (this->val >> Fixed::frac_bits);
 }
 
-// std::ostream &operator<<(std::ostream &os, const Fixed &fixed)
-// {
-// 	os << fixed.toFloat();
-// 	return (os);
-// }
+std::ostream &operator<<(std::ostream &os, const Fixed &fixed)
+{
+	os << fixed.toFloat();
+	return (os);
+}

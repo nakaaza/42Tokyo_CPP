@@ -2,6 +2,7 @@
 # define FIXED_HPP
 
 # include <limits>
+# include <iostream>
 
 # define FRAC_BITS 8
 # define FIXED_MAX std::numeric_limits<int>::max() >> FRAC_BITS
@@ -29,6 +30,6 @@ public:
 
 };
 
-// std::ostream &operator<<(std::ostream &os, const Fixed &fixed);
+std::ostream &operator<<(std::ostream &os, const Fixed &fixed);
 
 #endif
