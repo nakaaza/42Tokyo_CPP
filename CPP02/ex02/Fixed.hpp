@@ -2,6 +2,7 @@
 # define FIXED_HPP
 
 # include <limits>
+# include <iostream>
 
 # define FRAC_BITS 8
 # define FIXED_MAX std::numeric_limits<int>::max() >> FRAC_BITS
@@ -35,14 +36,13 @@ public:
 
 	Fixed	&operator++();
 	Fixed	&operator--();
-	// TOOD: prefix increments
-	// Fixed	&operator();
-	// Fixed	&operator();
+	Fixed	operator++(int);
+	Fixed	operator--(int);
 
-	static Fixed	&min(Fixed &f1, Fixed &f2);
-	static Fixed	&min(const Fixed &f1, const Fixed &f2);
-	static Fixed	&max(Fixed &f1, Fixed &f2);
-	static Fixed	&max(const Fixed &f1, const Fixed &f2);
+	static Fixed		&min(Fixed &f1, Fixed &f2);
+	static const Fixed	&min(const Fixed &f1, const Fixed &f2);
+	static Fixed		&max(Fixed &f1, Fixed &f2);
+	static const Fixed	&max(const Fixed &f1, const Fixed &f2);
 
 	int		getRawBits(void) const;
 	void	setRawBits(int const raw);
@@ -52,6 +52,6 @@ public:
 
 };
 
-// std::ostream &operator<<(std::ostream &os, const Fixed &fixed);
+std::ostream &operator<<(std::ostream &os, const Fixed &fixed);
 
 #endif

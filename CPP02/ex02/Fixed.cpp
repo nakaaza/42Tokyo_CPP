@@ -25,13 +25,12 @@ Fixed::Fixed(const int ini_val) {
 Fixed::Fixed(const float ini_val) {
 	std::cout << "Float constructor called" << std::endl;
 	float	scale = static_cast<float>(1 << Fixed::frac_bits);
-	// TODO: check float overflow
 	float	scaled = ini_val * scale;
 
-	if (scaled == NAN)
+	if (scaled != scaled)
 		throw std::overflow_error("Fixed: NaN is out of range");
-	if (scaled == INFINITY || scaled == -INFINITY)
-		throw std::overflow_error("Fixed: INFINITY is out of range");
+	if (scaled == std::numeric_limits<float>::infinity()
+		|| scaled == -std::numeric_limits<float>::infinity())
 	if (scaled < static_cast<float>(FIXED_MIN)
 		|| static_cast<float>(FIXED_MAX) < scaled)
 		throw std::overflow_error("Fixed: given float is out of Fixed range");
@@ -99,66 +98,91 @@ bool	Fixed::operator!=(const Fixed &rhs) {
 }
 
 Fixed	Fixed::operator+(const Fixed &rhs) {
-	return (this->val + rhs.val);
+	Fixed f;
+	f.val = this->val + rhs.val;
+	return (f);
 }
 
 Fixed	Fixed::operator-(const Fixed &rhs) {
-	return (this->val - rhs.val);
+	Fixed f;
+	f.val = this->val - rhs.val;
+	return (f);
 }
 
 Fixed	Fixed::operator*(const Fixed &rhs) {
-	return (this->val * rhs.val);
+	Fixed f;
+	// TODO: when decimal differs
+	f.val = (this->val * rhs.val) >> Fixed::frac_bits;
+	return (f);
 }
 
 Fixed	Fixed::operator/(const Fixed &rhs) {
-	// TODO: 0 division?
-	return (this->val / rhs.val);
+	Fixed f;
+	// TODO: when decimal differs
+	f.val = (this->val / rhs.val) << Fixed::frac_bits;
+	return (f);
 }
 
 Fixed	&Fixed::operator++() {
-	Fixed	&res = *this;
-	this->val += FIXED_EPS;
-	return (res);
+	++this->val;
+	return (*this);
 }
 
-// Fixed	&operator--();
-// Fixed	&operator();
-// Fixed	&operator();
+Fixed	&Fixed::operator--() {
+	--this->val;
+	return (*this);
+}
+
+Fixed	Fixed::operator++(int) {
+	Fixed	tmp(*this);
+
+	++this->val;
+	return (tmp);
+}
+
+Fixed	Fixed::operator--(int) {
+	Fixed	tmp(*this);
+
+	--this->val;
+	return (tmp);
+}
 
 Fixed	&Fixed::min(Fixed &f1, Fixed &f2)
 {
-	// TODO: include equal?
 	if (f1 > f2)
 		return (f2);
 	return (f1);
 }
 
-Fixed	&Fixed::min(const Fixed &f1, const Fixed &f2)
+const Fixed	&Fixed::min(const Fixed &f1, const Fixed &f2)
 {
-	// TODO: include equal?
-	if (f1 > f2)
+	Fixed	g1 = f1;
+	Fixed	g2 = f2;
+
+	if (g1 > g2)
 		return (f2);
 	return (f1);
 }
 
 Fixed	&Fixed::max(Fixed &f1, Fixed &f2)
 {
-	// TODO: include equal?
 	if (f1 < f2)
 		return (f2);
 	return (f1);
 }
 
-Fixed	&Fixed::max(const Fixed &f1, const Fixed &f2)
+const Fixed	&Fixed::max(const Fixed &f1, const Fixed &f2)
 {
-	// TODO: include equal?
-	if (f1 < f2)
+	Fixed	g1 = f1;
+	Fixed	g2 = f2;
+
+	if (g1 < g2)
 		return (f2);
 	return (f1);
 }
 
-// std::ostream &operator<<(std::ostream &os, const Fixed &fixed)
-// {
-// 	os << fixed.toFloat();
-// 	return (os);
-// }
+std::ostream &operator<<(std::ostream &os, const Fixed &fixed)
+{
+	os << fixed.toFloat();
+	return (os);
+}
