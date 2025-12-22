@@ -4,6 +4,10 @@
 # include <limits>
 # include <iostream>
 
+# ifndef DEBUG
+#  define DEBUG false
+# endif
+
 # define FRAC_BITS 8
 # define FIXED_MAX std::numeric_limits<int>::max() >> FRAC_BITS
 # define FIXED_MIN std::numeric_limits<int>::min() >> FRAC_BITS

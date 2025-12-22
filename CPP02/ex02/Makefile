@@ -1,7 +1,8 @@
 # ---- settings ----
 NAME     := ex02
+DEBUG    := false
 CXX      := c++
-CXXFLAGS := -Wall -Wextra -Werror -std=c++98 -pedantic
+CXXFLAGS := -Wall -Wextra -Werror -std=c++98  -D DEBUG=$(DEBUG) -pedantic
 
 OBJ_DIR  := obj
 
