@@ -20,4 +20,4 @@ public:
 
 };
 
-#endif // FIXED_HPP
+#endif
