@@ -82,50 +82,50 @@ int		Fixed::toInt(void) const {
 	return (this->val >> Fixed::frac_bits);
 }
 
-bool	Fixed::operator>(const Fixed &rhs) {
+bool	Fixed::operator>(const Fixed &rhs) const {
 	return (this->val > rhs.val);
 }
 
-bool	Fixed::operator<(const Fixed &rhs) {
+bool	Fixed::operator<(const Fixed &rhs) const {
 	return (this->val < rhs.val);
 }
 
-bool	Fixed::operator>=(const Fixed &rhs) {
+bool	Fixed::operator>=(const Fixed &rhs) const {
 	return (this->val >= rhs.val);
 }
 
-bool	Fixed::operator<=(const Fixed &rhs) {
+bool	Fixed::operator<=(const Fixed &rhs) const {
 	return (this->val <= rhs.val);
 }
 
-bool	Fixed::operator==(const Fixed &rhs) {
+bool	Fixed::operator==(const Fixed &rhs) const {
 	return (this->val == rhs.val);
 }
 
-bool	Fixed::operator!=(const Fixed &rhs) {
+bool	Fixed::operator!=(const Fixed &rhs) const {
 	return (this->val != rhs.val);
 }
 
-Fixed	Fixed::operator+(const Fixed &rhs) {
+Fixed	Fixed::operator+(const Fixed &rhs) const {
 	Fixed f;
 	f.val = this->val + rhs.val;
 	return (f);
 }
 
-Fixed	Fixed::operator-(const Fixed &rhs) {
+Fixed	Fixed::operator-(const Fixed &rhs) const {
 	Fixed f;
 	f.val = this->val - rhs.val;
 	return (f);
 }
 
-Fixed	Fixed::operator*(const Fixed &rhs) {
+Fixed	Fixed::operator*(const Fixed &rhs) const {
 	Fixed f;
 	// TODO: when decimal differs
 	f.val = (this->val * rhs.val) >> Fixed::frac_bits;
 	return (f);
 }
 
-Fixed	Fixed::operator/(const Fixed &rhs) {
+Fixed	Fixed::operator/(const Fixed &rhs) const {
 	Fixed f;
 	// TODO: when decimal differs
 	f.val = (this->val / rhs.val) << Fixed::frac_bits;
