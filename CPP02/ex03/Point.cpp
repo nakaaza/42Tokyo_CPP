@@ -8,7 +8,7 @@ Point::Point(): x(Fixed(0)), y(Fixed(0)) {
 	return ; 
 }
 
-Point::Point(const Fixed x, const Fixed y): x(x), y(y) {
+Point::Point(const float x, const float y): x(Fixed(x)), y(Fixed(y)) {
 	if (DEBUG)
 		std::cout << "Constructor with params called" << std::endl;
 	return ; 
@@ -23,6 +23,7 @@ Point::Point(const Point &src): x(src.x), y(src.y) {
 Point &Point::operator=(const Point &rhs) {
 	if (DEBUG)
 		std::cout << "Copy assignment operator called" << std::endl;
+	(void) rhs;
 	return *this;
 }
 
@@ -32,10 +33,16 @@ Point::~Point() {
 	return ;
 }
 
-void	Point::setX(const Fixed x) {
-	this->x = x;
+Fixed	Point::getX() const {
+	return (this->x);
 }
 
-void	Point::setY(const Fixed y) {
+Fixed	Point::getY() const {
+	return (this->y);
+}
 
+std::ostream &operator<<(std::ostream &os, const Point &point)
+{
+	os << "Point(" << point.getX() << ", " << point.getY() << ")";
+	return (os);
 }

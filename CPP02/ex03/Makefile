@@ -1,12 +1,12 @@
 # ---- settings ----
-NAME     := ex03
+NAME     := bsp
 DEBUG    := false
 CXX      := c++
 CXXFLAGS := -Wall -Wextra -Werror -std=c++98  -D DEBUG=$(DEBUG) -pedantic
 
 OBJ_DIR  := obj
 
-SRCS     := main.cpp Fixed.cpp Point.cpp
+SRCS     := main.cpp Fixed.cpp Point.cpp bsp.cpp
 OBJS     := $(SRCS:%.cpp=$(OBJ_DIR)/%.o)
 DEPS     := $(OBJS:.o=.d)
 
