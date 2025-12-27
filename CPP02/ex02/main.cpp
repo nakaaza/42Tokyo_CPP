@@ -59,7 +59,7 @@ static void	four_op_test( void ) {
 static void	increment_test( void ) {
 	print_test_start("increment test");
 
-	Fixed a = Fixed( 1.0f );
+	Fixed a = Fixed( 0.0f );
 
 	std::cout << "a = " <<  a << std::endl;
 	std::cout << "++a: " << a << " -> " << ++a << " -> " << a << std::endl;
