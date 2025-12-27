@@ -120,14 +120,12 @@ Fixed	Fixed::operator-(const Fixed &rhs) const {
 
 Fixed	Fixed::operator*(const Fixed &rhs) const {
 	Fixed f;
-	// TODO: when decimal differs
 	f.val = (this->val * rhs.val) >> Fixed::frac_bits;
 	return (f);
 }
 
 Fixed	Fixed::operator/(const Fixed &rhs) const {
 	Fixed f;
-	// TODO: when decimal differs
 	f.val = (this->val / rhs.val) << Fixed::frac_bits;
 	return (f);
 }
