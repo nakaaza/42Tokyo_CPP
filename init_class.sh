@@ -40,17 +40,17 @@ cat > "$CPP_FILE" <<EOF
 #include <iostream>
 
 ${CLASS_NAME}::${CLASS_NAME}() {
-	std::cout << "Default constructor called" << std::endl;
+	std::cout << "Default ${CLASS_NAME} constructor called" << std::endl;
 	return ; 
 }
 
 ${CLASS_NAME}::${CLASS_NAME}(const ${CLASS_NAME} &src) {
-	std::cout << "Copy constructor called" << std::endl;
+	std::cout << "Copy ${CLASS_NAME} constructor called" << std::endl;
 	*this = src;
 }
 
 ${CLASS_NAME} &${CLASS_NAME}::operator=(const ${CLASS_NAME} &rhs) {
-	std::cout << "Copy assignment operator called" << std::endl;
+	std::cout << "${CLASS_NAME} copy assignment operator called" << std::endl;
 	if (this != &rhs) {
 		// TODO: copy member variables here
 	}
@@ -58,7 +58,7 @@ ${CLASS_NAME} &${CLASS_NAME}::operator=(const ${CLASS_NAME} &rhs) {
 }
 
 ${CLASS_NAME}::~${CLASS_NAME}() {
-	std::cout << "Destructor called" << std::endl;
+	std::cout << "${CLASS_NAME} destructor called" << std::endl;
 	return ;
 }
 EOF
