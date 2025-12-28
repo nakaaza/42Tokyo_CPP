@@ -45,21 +45,30 @@ void	ClapTrap::attack(const std::string& target) {
 		std::cout << "ClapTrap " << this->name
 				  << " doesn't have enough points to attack."
 				  << std::endl;
+		this->healthCheck();
 		return ;
 	}
 	std::cout << "ClapTrap " << this->name << " attacks " << target
 			  << ", causing " << this->attck_damage << " points of damage!"
 			  << std::endl;
+	this->healthCheck();
+	return ;
 }
 
 void	ClapTrap::takeDamage(unsigned int amount) {
-
+	this->healthCheck();
+	return ;
 }
 
 void	ClapTrap::beRepaired(unsigned int amount) {
-
+	this->healthCheck();
+	return ;
 }
 
 void	ClapTrap::healthCheck(void) {
-	
+	std::cout << "ClapTrap " << this->name
+			  << " has " << this->hit_points
+			  << "HP and " << this->energy_points
+			  << "EP now." << std::endl;
+	return ;
 }
