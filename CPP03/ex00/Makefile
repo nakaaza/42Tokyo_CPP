@@ -5,7 +5,7 @@ CXXFLAGS := -Wall -Wextra -Werror -std=c++98 -pedantic
 
 OBJ_DIR  := obj
 
-SRCS     := main.cpp Fixed.cpp
+SRCS     := main.cpp ClapTrap.cpp
 OBJS     := $(SRCS:%.cpp=$(OBJ_DIR)/%.o)
 DEPS     := $(OBJS:.o=.d)
 
