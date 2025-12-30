@@ -30,7 +30,6 @@ ClapTrap::ClapTrap(const ClapTrap &src):
 {
 	std::cout << "ClapTrap copy constructor for " << this->name_
 			  << " called" << std::endl;
-	*this = src;
 }
 
 ClapTrap &ClapTrap::operator=(const ClapTrap &rhs)
