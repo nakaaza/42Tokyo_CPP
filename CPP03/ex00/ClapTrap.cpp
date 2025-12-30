@@ -151,7 +151,10 @@ void	ClapTrap::consumeHitPoint(unsigned int amount)
 
 void	ClapTrap::gainHitPoint(unsigned int amount)
 {
-	this->hit_points_ += amount;
+	if (this->hit_points_ > UINT_MAX - amount)
+		this->hit_points_ = UINT_MAX;
+	else
+		this->hit_points_ += amount;
 	return ;
 }
 

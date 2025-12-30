@@ -2,6 +2,7 @@
 # define CLAP_TRAP_HPP
 
 # include <string>
+# include <climits>
 
 class ClapTrap {
 
