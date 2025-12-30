@@ -17,6 +17,7 @@ private:
 	void	consumeEnegyPoint(void);
 	void	consumeHitPoint(unsigned int amount);
 	void	gainHitPoint(unsigned int amount);
+
 public:
 	ClapTrap();
 	ClapTrap(std::string name);

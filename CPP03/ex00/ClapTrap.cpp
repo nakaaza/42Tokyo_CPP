@@ -17,7 +17,8 @@ ClapTrap::ClapTrap(std::string name):
 	energy_points_(10),
 	attck_damage_(0)
 {
-	std::cout << "ClapTrap constructor with name called" << std::endl;
+	std::cout << "ClapTrap constructor with name " << this->name_
+			  << " called" << std::endl;
 	return ; 
 }
 
@@ -27,13 +28,15 @@ ClapTrap::ClapTrap(const ClapTrap &src):
 	energy_points_(src.energy_points_),
 	attck_damage_(src.attck_damage_)
 {
-	std::cout << "ClapTrap copy constructor called" << std::endl;
+	std::cout << "ClapTrap copy constructor for " << this->name_
+			  << " called" << std::endl;
 	*this = src;
 }
 
 ClapTrap &ClapTrap::operator=(const ClapTrap &rhs)
 {
-	std::cout << "ClapTrap copy assignment operator called" << std::endl;
+	std::cout << "ClapTrap copy assignment operator with " << rhs.name_
+			  << " called" << std::endl;
 	if (this != &rhs) {
 		this->name_ = rhs.name_;
 		this->hit_points_ = rhs.hit_points_;
@@ -45,7 +48,8 @@ ClapTrap &ClapTrap::operator=(const ClapTrap &rhs)
 
 ClapTrap::~ClapTrap()
 {
-	std::cout << "ClapTrap destructor called" << std::endl;
+	std::cout << "ClapTrap destructor for " << this->name_
+			  << " called" << std::endl;
 	return ;
 }
 
@@ -154,6 +158,8 @@ void	ClapTrap::gainHitPoint(unsigned int amount)
 
 void	ClapTrap::setName(const std::string name)
 {
+	std::cout << "ClapTrap " << this->name_
+			  << " is now called " << name << std::endl;
 	this->name_ = name;
 	return ;
 }
