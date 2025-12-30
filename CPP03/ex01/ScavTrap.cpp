@@ -27,10 +27,10 @@ ScavTrap::ScavTrap(const ScavTrap &src): ClapTrap(src) {
 }
 
 ScavTrap &ScavTrap::operator=(const ScavTrap &rhs) {
-	std::cout << "ScavTrap copy assignment operator with " << rhs.name_
-			  << " called" << std::endl;
 	if (this != &rhs)
 		ClapTrap::operator=(rhs);
+	std::cout << "ScavTrap copy assignment operator with " << rhs.name_
+			  << " called" << std::endl;
 	return *this;
 }
 
