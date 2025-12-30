@@ -17,6 +17,8 @@ int main()
 	cat1->makeSound();
 	meta1->makeSound();
 
+	std::cout << std::endl;
+
 	WrongAnimal*	w_meta = new WrongAnimal();
 	WrongAnimal*	w_cat = new WrongCat();
 	std::cout << w_cat->getType() << " " << std::endl;
