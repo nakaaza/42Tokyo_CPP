@@ -20,6 +20,9 @@ cat > "$HPP_FILE" <<EOF
 
 class ${CLASS_NAME} {
 
+protected:
+
+
 private:
 	
 
@@ -40,12 +43,12 @@ cat > "$CPP_FILE" <<EOF
 #include <iostream>
 
 ${CLASS_NAME}::${CLASS_NAME}() {
-	std::cout << "Default ${CLASS_NAME} constructor called" << std::endl;
+	std::cout << "${CLASS_NAME} default constructor called" << std::endl;
 	return ; 
 }
 
 ${CLASS_NAME}::${CLASS_NAME}(const ${CLASS_NAME} &src) {
-	std::cout << "Copy ${CLASS_NAME} constructor called" << std::endl;
+	std::cout << "${CLASS_NAME} copy constructor called" << std::endl;
 	*this = src;
 }
 
