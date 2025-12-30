@@ -14,8 +14,8 @@ public:
 	WrongAnimal &operator=(const WrongAnimal &rhs);
 	virtual ~WrongAnimal();
 
-	virtual void	makeSound() const;
-	std::string		getType() const;
+	void		makeSound() const;
+	std::string	getType() const;
 };
 
 #endif // WRONG_ANIMAL_HPP

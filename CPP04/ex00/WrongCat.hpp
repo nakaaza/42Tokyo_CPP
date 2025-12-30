@@ -11,7 +11,7 @@ public:
 	WrongCat &operator=(const WrongCat &rhs);
 	virtual	~WrongCat();
 
-	virtual void	makeSound() const;
+	void	makeSound() const;
 };
 
 #endif // WRONG_CAT_HPP

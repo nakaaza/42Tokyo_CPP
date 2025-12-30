@@ -1,7 +1,7 @@
 #include "WrongAnimal.hpp"
 #include <iostream>
 
-WrongAnimal::WrongAnimal() {
+WrongAnimal::WrongAnimal(): type("ἀρχή") {
 	std::cout << "WrongAnimal default constructor called" << std::endl;
 	return ; 
 }
@@ -25,7 +25,7 @@ WrongAnimal::~WrongAnimal() {
 
 void	WrongAnimal::makeSound() const
 {
-	std::cout << "(WWWHat AAARe YYYou DDDoing HHHere?)" << std::endl;
+	std::cout << "(Oh, it's a surprise that you can hear me. I'm ἀρχή, the origin of all the living things.)" << std::endl;
 	return ;
 }
 

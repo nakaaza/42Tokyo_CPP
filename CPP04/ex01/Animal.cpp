@@ -1,7 +1,7 @@
 #include "Animal.hpp"
 #include <iostream>
 
-Animal::Animal() {
+Animal::Animal(): type("ἀρχή") {
 	std::cout << "Animal default constructor called" << std::endl;
 	return ; 
 }

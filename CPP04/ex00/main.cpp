@@ -5,25 +5,34 @@
 #include "WrongAnimal.hpp"
 #include "WrongCat.hpp"
 
+static void	test_animal(Animal* animal)
+{
+	std::cout << "Type: " << animal->getType() << std::endl;
+	std::cout << "Sound: ";
+	animal->makeSound();
+}
+
 int main()
 {
 	std::cout << "=== Default constructor test ===============" << std::endl;
 	Animal* meta1 = new Animal();
 	Animal* dog1 = new Dog();
 	Animal* cat1 = new Cat();
-	std::cout << dog1->getType() << " " << std::endl;
-	std::cout << cat1->getType() << " " << std::endl;
-	dog1->makeSound();
-	cat1->makeSound();
-	meta1->makeSound();
+	test_animal(meta1);
+	test_animal(dog1);
+	test_animal(cat1);
 
 	std::cout << std::endl;
 
+	std::cout << "--- Wrong version ---" << std::endl;
 	WrongAnimal*	w_meta = new WrongAnimal();
 	WrongAnimal*	w_cat = new WrongCat();
-	std::cout << w_cat->getType() << " " << std::endl;
-	w_cat->makeSound();
+	std::cout << "Type: " << w_meta->getType() << std::endl;
+	std::cout << "Sound: ";
 	w_meta->makeSound();
+	std::cout << "Type: " << w_cat->getType() << std::endl;
+	std::cout << "Sound: ";
+	w_cat->makeSound();
 	std::cout << std::endl;
 	
 	delete w_meta;
@@ -33,11 +42,9 @@ int main()
 	Animal* meta2 = new Animal(*meta1);
 	Animal* dog2 = new Dog(*dynamic_cast<Dog*>(dog1));
 	Animal* cat2 = new Cat(*dynamic_cast<Cat*>(cat1));
-	std::cout << dog2->getType() << " " << std::endl;
-	std::cout << cat2->getType() << " " << std::endl;
-	dog2->makeSound();
-	cat2->makeSound();
-	meta2->makeSound();
+	test_animal(meta2);
+	test_animal(dog2);
+	test_animal(cat2);
 	std::cout << std::endl;
 
 	std::cout << "=== Copy assignment operator test ===============" << std::endl;
@@ -47,11 +54,9 @@ int main()
 	*meta3 = *meta2;
 	*dog3 = *dog2;
 	*cat3 = *cat2;
-	std::cout << dog3->getType() << " " << std::endl;
-	std::cout << cat3->getType() << " " << std::endl;
-	dog3->makeSound();
-	cat3->makeSound();
-	meta3->makeSound();
+	test_animal(meta3);
+	test_animal(dog3);
+	test_animal(cat3);
 	std::cout << std::endl;
 
 	delete meta1;

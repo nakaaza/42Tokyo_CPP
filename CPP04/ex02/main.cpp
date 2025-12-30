@@ -18,14 +18,14 @@ int main()
 
 static void	set_primary_dog_idea(Dog *dog, int i)
 {
-	std::string ideas[3] = {"I'm hungry, give me some chicken", "WALK! WALK! WALK!", "Mooom! Don't! Don't leave me alone!"};
+	std::string ideas[3] = {"I'm hungry, give me some chicken.", "WALK! WALK! WALK!", "Mooom! Don't! Don't leave me alone!"};
 	dog->setIdea(0, ideas[i % 3]);
 	return ;
 }
 
 static void	set_primary_cat_idea(Cat *cat, int i)
 {
-	std::string ideas[3] = {"I'm hungry, give me some fish", "Where's my warm and silent bed", "You're leaving? That's all fine. Bye."};
+	std::string ideas[3] = {"I'm hungry, give me some fish.", "Where's my warm and silent bed?", "You're leaving? That's all fine. Bye."};
 	cat->setIdea(0, ideas[i % 3]);
 	return ;
 }
@@ -34,20 +34,20 @@ static void	brainTest()
 {
 	std::cout << "=== Brain TEST =====================" << std::endl;
 	const int size = 10;
-	AAnimal* AAnimals[size];
+	AAnimal* animals[size];
 
 	for (int i = 0; i < size; i++)
 	{
 		if (i < size / 2)
 		{
 			Dog* dog = new Dog();
-			AAnimals[i] = dog;
+			animals[i] = dog;
 			set_primary_dog_idea(dog, i);
 		}
 		else
 		{
 			Cat* cat = new Cat();
-			AAnimals[i] = cat; 
+			animals[i] = cat; 
 			set_primary_cat_idea(cat, i);
 		}
 	}
@@ -55,17 +55,17 @@ static void	brainTest()
 	for (int i = 0; i < size; i++)
 	{
 		if (i < size / 2)
-			std::cout << "I'm " << i << ". "
-					  << dynamic_cast<Dog*>(AAnimals[i])->getIdea(0)
+			std::cout << "I'm " << i << ", a " << animals[i]->getType() << ". "
+					  << dynamic_cast<Dog*>(animals[i])->getIdea(0)
 					  << std::endl;
 		else
-			std::cout << "I'm " << i << ". "
-					  << dynamic_cast<Cat*>(AAnimals[i])->getIdea(0)
+			std::cout << "I'm " << i << ", a " << animals[i]->getType() << ". "
+					  << dynamic_cast<Cat*>(animals[i])->getIdea(0)
 					  << std::endl;
 	}
 	std::cout << std::endl;
 	for (int i = 0; i < size; i++)
-		delete AAnimals[i];
+		delete animals[i];
 
 	return ;
 }
