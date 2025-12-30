@@ -9,7 +9,7 @@ Brain::Brain() {
 
 Brain::Brain(const Brain &src) {
 	std::cout << "Brain copy constructor called" << std::endl;
-	for (int i = 0; i < IDEA_COUNT; i++)
+	for (int i = 0; i < Brain::idea_count; i++)
 		ideas[i] = src.ideas[i];
 }
 
@@ -28,14 +28,14 @@ Brain::~Brain() {
 
 void	Brain::set_idea(size_t idx, std::string idea)
 {
-	if (idx < 0 || idx >= IDEA_COUNT)
+	if (idx < 0 || idx >= Brain::idea_count)
 		throw std::out_of_range("idx out of range");
 	this->ideas[idx] = idea;
 }
 
 std::string	Brain::get_idea(size_t idx) const
 {
-	if (idx < 0 || idx >= IDEA_COUNT)
+	if (idx < 0 || idx >= Brain::idea_count)
 		throw std::out_of_range("idx out of range");
 	return (this->ideas[idx]);
 }

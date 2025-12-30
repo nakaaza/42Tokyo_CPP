@@ -1,14 +1,13 @@
 #ifndef BRAIN_HPP
 # define BRAIN_HPP
 
-# define IDEA_COUNT 100
-
 # include <string>
 
 class Brain {
 
 private:
-	std::string	ideas[IDEA_COUNT];
+	const static int	idea_count = 100;
+	std::string			ideas[idea_count];
 
 public:
 	Brain();
