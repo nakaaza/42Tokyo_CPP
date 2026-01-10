@@ -1,25 +1,65 @@
 #include "Bureaucrat.hpp"
 #include <iostream>
 
-Bureaucrat::Bureaucrat() {
-	std::cout << "Bureaucrat default constructor called" << std::endl;
-	return ; 
-}
+const int	Bureaucrat::HIGHEST_GRADE = 1;
+const int	Bureaucrat::LOWEST_GRADE = 150;
 
-Bureaucrat::Bureaucrat(const Bureaucrat &src) {
-	std::cout << "Bureaucrat copy constructor called" << std::endl;
-	*this = src;
-}
+Bureaucrat::Bureaucrat():
+	_name("anonymous"),
+	_grade(LOWEST_GRADE)
+{}
+
+Bureaucrat::Bureaucrat(const std::string name, int grade):
+	_name(name),
+	_grade(grade)
+{}
+
+Bureaucrat::Bureaucrat(const Bureaucrat &src):
+	_name(src._name),
+	_grade(src._grade)
+{}
 
 Bureaucrat &Bureaucrat::operator=(const Bureaucrat &rhs) {
-	std::cout << "Bureaucrat copy assignment operator called" << std::endl;
-	if (this != &rhs) {
-		// TODO: copy member variables here
-	}
-	return *this;
+	if (this != &rhs)
+		this->_setGrade(rhs.getGrade());
+	return (*this);
 }
 
-Bureaucrat::~Bureaucrat() {
-	std::cout << "Bureaucrat destructor called" << std::endl;
-	return ;
+Bureaucrat::~Bureaucrat() {}
+
+bool	Bureaucrat::validateGrade(int grade) {
+	if (grade > LOWEST_GRADE)
+		throw GradeTooLowException();
+	if (grade < HIGHEST_GRADE)
+		throw GradeTooHighException();
+	return (true);
+}
+
+void	Bureaucrat::_setGrade(int grade) {
+	if (validateGrade(grade))
+		this->_grade = grade;
+}
+
+std::string	Bureaucrat::getName() const {
+	return (this->_name);
+}
+
+int	Bureaucrat::getGrade() const {
+	return (this->_grade);
+}
+
+void	Bureaucrat::incrementGrade() {
+	if (validateGrade(_grade - 1))
+		_grade--;
+}
+
+void	Bureaucrat::decrementGrade() {
+	if (validateGrade(_grade + 1))
+		_grade++;
+}
+
+std::ostream &operator<<(std::ostream &os, const Bureaucrat &b)
+{
+	os << b.getName() << ", bureaucrat grade " << b.getGrade() << ".";
+	return (os);
 }
