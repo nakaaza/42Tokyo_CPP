@@ -5,5 +5,5 @@ Bureaucrat::GradeTooHighException::GradeTooHighException(const GradeTooHighExcep
 Bureaucrat::GradeTooHighException& Bureaucrat::GradeTooHighException::operator=(const GradeTooHighException& o){ (void)o; return *this; }
 Bureaucrat::GradeTooHighException::~GradeTooHighException() throw() {}
 const char* Bureaucrat::GradeTooHighException::what() const throw() {
-    return "ERROR: Bureaucrat: grade too high.";
+	return "ERROR: Bureaucrat: grade too high.";
 }
