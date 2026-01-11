@@ -63,3 +63,19 @@ std::ostream &operator<<(std::ostream &os, const Bureaucrat &b)
 	os << b.getName() << ", bureaucrat grade " << b.getGrade() << ".";
 	return (os);
 }
+
+Bureaucrat::GradeTooHighException::GradeTooHighException() {}
+Bureaucrat::GradeTooHighException::GradeTooHighException(const GradeTooHighException& o){ (void)o; }
+Bureaucrat::GradeTooHighException& Bureaucrat::GradeTooHighException::operator=(const GradeTooHighException& o){ (void)o; return *this; }
+Bureaucrat::GradeTooHighException::~GradeTooHighException() throw() {}
+const char* Bureaucrat::GradeTooHighException::what() const throw() {
+	return "ERROR: Bureaucrat: grade too high.";
+}
+
+Bureaucrat::GradeTooLowException::GradeTooLowException() {}
+Bureaucrat::GradeTooLowException::GradeTooLowException(const GradeTooLowException& o){ (void)o; }
+Bureaucrat::GradeTooLowException& Bureaucrat::GradeTooLowException::operator=(const GradeTooLowException& o){ (void)o; return *this; }
+Bureaucrat::GradeTooLowException::~GradeTooLowException() throw() {}
+const char* Bureaucrat::GradeTooLowException::what() const throw() {
+	return "ERROR: Bureaucrat: grade too low.";
+}
