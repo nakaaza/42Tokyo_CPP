@@ -37,12 +37,12 @@ public:
 	};
 
 	class GradeTooLowException : public std::exception {
-	public:
-		GradeTooLowException();
-		GradeTooLowException(const GradeTooLowException& other);
-		GradeTooLowException& operator=(const GradeTooLowException& other);
-		virtual ~GradeTooLowException() throw();
-		virtual const char* what() const throw();
+		public:
+			GradeTooLowException();
+			GradeTooLowException(const GradeTooLowException& other);
+			GradeTooLowException& operator=(const GradeTooLowException& other);
+			virtual ~GradeTooLowException() throw();
+			virtual const char* what() const throw();
 	};
 };
 

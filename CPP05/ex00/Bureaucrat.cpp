@@ -1,18 +1,18 @@
 #include "Bureaucrat.hpp"
-#include <iostream>
 
 const int	Bureaucrat::HIGHEST_GRADE = 1;
 const int	Bureaucrat::LOWEST_GRADE = 150;
 
 Bureaucrat::Bureaucrat():
-	_name("anonymous"),
+	_name("(bureaucrat)"),
 	_grade(LOWEST_GRADE)
 {}
 
 Bureaucrat::Bureaucrat(const std::string name, int grade):
-	_name(name),
-	_grade(grade)
-{}
+	_name(name)
+{
+	_setGrade(grade);
+}
 
 Bureaucrat::Bureaucrat(const Bureaucrat &src):
 	_name(src._name),
