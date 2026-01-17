@@ -79,6 +79,15 @@ void	AForm::beSigned(Bureaucrat const &signer)
 	return ;
 }
 
+void	AForm::execute(Bureaucrat const &executor) const
+{
+	if (!isSigned())
+		throw NotSignedException();
+	if (executor.getGrade() > getGradeToExecute())
+		throw GradeTooLowToExecuteException();
+	doExecute(executor);
+}
+
 std::ostream &operator<<(std::ostream &os, const AForm &f)
 {
 	os << f.getName() << ": ";
@@ -103,6 +112,14 @@ const char* AForm::GradeTooLowToSignException::what() const throw() {
 	return "ERROR: AForm: grade too low to sign.";
 }
 
+const char* AForm::GradeTooLowToExecuteException::what() const throw() {
+	return "ERROR: AForm: grade too low to sign.";
+}
+
 const char* AForm::AlreadySignedException::what() const throw() {
 	return "ERROR: AForm: already signed";
+}
+
+const char* AForm::NotSignedException::what() const throw() {
+	return "ERROR: AForm: not signed when execution";
 }

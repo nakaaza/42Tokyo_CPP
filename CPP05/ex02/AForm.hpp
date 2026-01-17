@@ -18,6 +18,9 @@ private:
 
 	static bool			validateGrade(int grade);
 
+protected:
+	virtual void	doExecute(Bureaucrat const &executor) const = 0;
+
 public:
 	AForm();
 	AForm(const AForm &src);
@@ -35,6 +38,7 @@ public:
 	int			getGradeToExecute() const;
 
 	void		beSigned(Bureaucrat const &signer);
+	void		execute(Bureaucrat const &executor) const;
 
 	class GradeTooHighException : public std::exception {
 		public:
@@ -51,7 +55,17 @@ public:
 			virtual const char* what() const throw();
 	};
 
+	class GradeTooLowToExecuteException : public std::exception {
+		public:
+			virtual const char* what() const throw();
+	};
+
 	class AlreadySignedException : public std::exception {
+		public:
+			virtual const char* what() const throw();
+	};
+
+	class NotSignedException : public std::exception {
 		public:
 			virtual const char* what() const throw();
 	};
