@@ -25,7 +25,7 @@ int main()
 	p.signForm(f1_3); // -> already signed
 	
 	std::cout << "=== Constructor with valid params test" << std::endl;
-	Form f2_1("FORM", false, 5, 5);
+	Form f2_1("FORM", 5, 5);
 	Form f2_2 = f2_1;
 	Form f2_3 = f2_1;
 	std::cout << f2_1 << std::endl;
@@ -37,12 +37,12 @@ int main()
 
 	std::cout << "=== Constructor with invalid params test" << std::endl;
 	try {
-		Form f3_1("FORM", false, 0, 5);
+		Form f3_1("FORM", 0, 5);
 	} catch (const std::exception &e) {
 		std::cerr << e.what() << std::endl;
 	}
 	try {
-		Form f3_1("FORM", false, 5, 151);
+		Form f3_1("FORM", 5, 151);
 	} catch (const std::exception &e) {
 		std::cerr << e.what() << std::endl;
 	}
