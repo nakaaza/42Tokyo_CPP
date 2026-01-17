@@ -19,7 +19,9 @@ Form::Form(const Form &src):
 {}
 
 Form::Form(std::string name,
-		   int gradeToSign, int gradeToExecute, bool sign):
+		   int gradeToSign,
+		   int gradeToExecute,
+		   bool sign):
 	_name(name),
 	_gradeToSign(gradeToSign),
 	_gradeToExecute(gradeToExecute),
