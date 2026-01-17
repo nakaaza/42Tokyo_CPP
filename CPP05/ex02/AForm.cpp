@@ -69,24 +69,13 @@ int		AForm::getGradeToExecute() const
 	return (this->_gradeToExecute);
 }
 
-void	AForm::beSigned(Bureaucrat &b)
+void	AForm::beSigned(Bureaucrat const &signer)
 {
 	if (isSigned())
-	{
-		std::cout << getName() << " is already signed." << std::endl;
-		return ;
-	}
-	if (b.getGrade() > getGradeToSign())
-	{
-		std::cout << b.getName() << " couldn't sign "
-				  << getName() << " because "
-				  << b.getName() << "'s grade (" << b.getGrade() << ")"
-				  << " is too low." << std::endl;
-		return ;
-	}
+		throw AlreadySignedException();
+	if (signer.getGrade() > getGradeToSign())
+		throw GradeTooLowToSignException();
 	_signed = true;
-	std::cout << b.getName() << " signed "
-			  << getName() << std::endl;
 	return ;
 }
 
@@ -108,4 +97,12 @@ const char* AForm::GradeTooHighException::what() const throw() {
 
 const char* AForm::GradeTooLowException::what() const throw() {
 	return "ERROR: AForm: grade too low.";
+}
+
+const char* AForm::GradeTooLowToSignException::what() const throw() {
+	return "ERROR: AForm: grade too low to sign.";
+}
+
+const char* AForm::AlreadySignedException::what() const throw() {
+	return "ERROR: AForm: already signed";
 }
