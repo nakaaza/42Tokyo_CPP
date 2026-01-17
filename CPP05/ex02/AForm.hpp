@@ -27,7 +27,7 @@ public:
 		 bool sign = false
 		);
 	AForm &operator=(const AForm &rhs);
-	~AForm();
+	virtual ~AForm();
 
 	std::string	getName() const;
 	bool		isSigned() const;
