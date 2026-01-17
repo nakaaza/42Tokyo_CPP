@@ -29,19 +29,11 @@ public:
 
 	class GradeTooHighException : public std::exception {
 		public:
-			GradeTooHighException();
-			GradeTooHighException(const GradeTooHighException& other);
-			GradeTooHighException& operator=(const GradeTooHighException& other);
-			virtual ~GradeTooHighException() throw();
 			virtual const char* what() const throw();
 	};
 
 	class GradeTooLowException : public std::exception {
 		public:
-			GradeTooLowException();
-			GradeTooLowException(const GradeTooLowException& other);
-			GradeTooLowException& operator=(const GradeTooLowException& other);
-			virtual ~GradeTooLowException() throw();
 			virtual const char* what() const throw();
 	};
 };
