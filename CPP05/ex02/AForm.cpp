@@ -100,18 +100,10 @@ std::ostream &operator<<(std::ostream &os, const AForm &f)
 	return (os);
 }
 
-AForm::GradeTooHighException::GradeTooHighException() {}
-AForm::GradeTooHighException::GradeTooHighException(const GradeTooHighException& o){ (void)o; }
-AForm::GradeTooHighException& AForm::GradeTooHighException::operator=(const GradeTooHighException& o){ (void)o; return *this; }
-AForm::GradeTooHighException::~GradeTooHighException() throw() {}
 const char* AForm::GradeTooHighException::what() const throw() {
 	return "ERROR: AForm: grade too high.";
 }
 
-AForm::GradeTooLowException::GradeTooLowException() {}
-AForm::GradeTooLowException::GradeTooLowException(const GradeTooLowException& o){ (void)o; }
-AForm::GradeTooLowException& AForm::GradeTooLowException::operator=(const GradeTooLowException& o){ (void)o; return *this; }
-AForm::GradeTooLowException::~GradeTooLowException() throw() {}
 const char* AForm::GradeTooLowException::what() const throw() {
 	return "ERROR: AForm: grade too low.";
 }
