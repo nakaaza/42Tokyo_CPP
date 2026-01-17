@@ -12,21 +12,19 @@ private:
 	const static int	LOWEST_GRADE;
 
 	const std::string	_name;
-	bool				_signed;
 	const int			_gradeToSign;
 	const int			_gradeToExecute;
+	bool				_signed;
 
-	void				_setGradeToSign(int grade);
-	void				_setGradeToExecute(int grade);
 	static bool			validateGrade(int grade);
 
 public:
 	AForm();
 	AForm(const AForm &src);
 	AForm(std::string name,
-		 bool sign = false,
 		 int gradeToSign = HIGHEST_GRADE,
-		 int gradeToExecute = HIGHEST_GRADE
+		 int gradeToExecute = HIGHEST_GRADE,
+		 bool sign = false
 		);
 	AForm &operator=(const AForm &rhs);
 	~AForm();

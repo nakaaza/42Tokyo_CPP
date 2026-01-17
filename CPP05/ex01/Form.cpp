@@ -6,24 +6,24 @@ const int	Form::LOWEST_GRADE = Bureaucrat::LOWEST_GRADE;
 
 Form::Form():
 	_name("(form)"),
-	_signed(false),
 	_gradeToSign(LOWEST_GRADE),
-	_gradeToExecute(LOWEST_GRADE)
+	_gradeToExecute(LOWEST_GRADE),
+	_signed(false)
 {}
 
 Form::Form(const Form &src):
 	_name(src._name),
-	_signed(src._signed),
 	_gradeToSign(src._gradeToSign),
-	_gradeToExecute(src._gradeToExecute)
+	_gradeToExecute(src._gradeToExecute),
+	_signed(src._signed)
 {}
 
-Form::Form(std::string name, bool sign,
-		   int gradeToSign, int gradeToExecute):
+Form::Form(std::string name,
+		   int gradeToSign, int gradeToExecute, bool sign):
 	_name(name),
-	_signed(sign),
 	_gradeToSign(gradeToSign),
-	_gradeToExecute(gradeToExecute)
+	_gradeToExecute(gradeToExecute),
+	_signed(sign)
 {
 	validateGrade(gradeToSign);
 	validateGrade(gradeToExecute);
