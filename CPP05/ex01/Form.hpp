@@ -46,11 +46,6 @@ public:
 			virtual const char* what() const throw();
 	};
 
-	class GradeTooLowToSignException : public std::exception {
-		public:
-			virtual const char* what() const throw();
-	};
-
 	class AlreadySignedException : public std::exception {
 		public:
 			virtual const char* what() const throw();

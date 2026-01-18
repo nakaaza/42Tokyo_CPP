@@ -83,7 +83,7 @@ void	AForm::beSigned(Bureaucrat const &signer)
 	if (isSigned())
 		throw AlreadySignedException();
 	if (signer.getGrade() > getGradeToSign())
-		throw GradeTooLowToSignException();
+		throw GradeTooLowException();
 	_signed = true;
 	return ;
 }
@@ -93,7 +93,7 @@ void	AForm::execute(Bureaucrat const &executor) const
 	if (!isSigned())
 		throw NotSignedException();
 	if (executor.getGrade() > getGradeToExecute())
-		throw GradeTooLowToExecuteException();
+		throw GradeTooLowException();
 	doExecute();
 }
 
@@ -116,14 +116,6 @@ const char* AForm::GradeTooHighException::what() const throw() {
 
 const char* AForm::GradeTooLowException::what() const throw() {
 	return "ERROR: AForm: grade too low.";
-}
-
-const char* AForm::GradeTooLowToSignException::what() const throw() {
-	return "ERROR: AForm: grade too low to sign.";
-}
-
-const char* AForm::GradeTooLowToExecuteException::what() const throw() {
-	return "ERROR: AForm: grade too low to execute.";
 }
 
 const char* AForm::AlreadySignedException::what() const throw() {
