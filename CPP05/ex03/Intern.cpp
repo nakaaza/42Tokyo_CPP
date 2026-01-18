@@ -55,12 +55,12 @@ AForm*	Intern::makeForm(const std::string name,
 	if (res) {
 		std::cout << "Intern creates " << formattedName << "Form" << std::endl;
 		return (res);
-	} else 
-		throw NoMatchClassException();
-}
-
-const char*	Intern::NoMatchClassException::what() const throw() {
-	return "ERROR: Intern: given `name` doesn't match any of the Form candidates.";
+	} else { 
+		std::cout << "Intern couldn't make form because "
+				  << name << " doesn't match any of the Form candidates."
+				  << std::endl;
+		return (NULL);
+	}
 }
 
 std::string toUpperCamelCase(const std::string& input)

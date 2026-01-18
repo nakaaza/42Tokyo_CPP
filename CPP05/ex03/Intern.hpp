@@ -24,11 +24,6 @@ public:
 	typedef AForm*	(*MakeFormF)(const std::string& target);
 	AForm*	makeForm(const std::string name,
 					 const std::string target);
-
-	class NoMatchClassException: public std::exception {
-		public:
-			virtual const char* what() const throw();
-	};
 };
 
 std::string toUpperCamelCase(const std::string& input);

@@ -26,5 +26,9 @@ int main()
 	for (int i = 0; i < 5; i++)
 		delete forms[i];
 	
+	AForm* invalidF = intern.makeForm("no form like this", "nonono");
+	if (invalidF)
+		delete invalidF;
+
 	return (0);
 }
