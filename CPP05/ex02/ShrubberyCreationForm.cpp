@@ -2,20 +2,16 @@
 #include <fstream>
 
 ShrubberyCreationForm::ShrubberyCreationForm(const std::string target):
-	AForm("ShrubberyCreationForm", 145, 137),
-	_target(target)
+	AForm("ShrubberyCreationForm", target, 145, 137)
 {}
 
 ShrubberyCreationForm::ShrubberyCreationForm(const ShrubberyCreationForm &src):
-	AForm(src),
-	_target(src._target)
+	AForm(src)
 {}
 
 ShrubberyCreationForm &ShrubberyCreationForm::operator=(const ShrubberyCreationForm &rhs) {
-	if (this != &rhs) {
+	if (this != &rhs)
 		AForm::operator=(rhs);
-		_target = rhs._target;
-	}
 	return *this;
 }
 
@@ -23,7 +19,7 @@ ShrubberyCreationForm::~ShrubberyCreationForm() {}
 
 void	ShrubberyCreationForm::doExecute() const
 {
-	std::ofstream ofs((_target + "_shrubbery").c_str());
+	std::ofstream ofs((getTarget() + "_shrubbery").c_str());
 	if (!ofs)
 		throw AForm::FileOpenException();
 

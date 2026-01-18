@@ -4,20 +4,16 @@
 #include <ctime>
 
 RobotomyRequestForm::RobotomyRequestForm(const std::string target):
-	AForm("RobotomyRequestForm", 72, 45),
-	_target(target)
+	AForm("RobotomyRequestForm", target, 72, 45)
 {}
 
 RobotomyRequestForm::RobotomyRequestForm(const RobotomyRequestForm &src):
-	AForm(src),
-	_target(src._target)
+	AForm(src)
 {}
 
 RobotomyRequestForm &RobotomyRequestForm::operator=(const RobotomyRequestForm &rhs) {
-	if (this != &rhs) {
+	if (this != &rhs)
 		AForm::operator=(rhs);
-		_target = rhs._target;
-	}
 	return *this;
 }
 
@@ -34,9 +30,9 @@ void	RobotomyRequestForm::doExecute() const
 	std::cout << "* GRRRRRRRRRRRRRRRRR! *" << std::endl;
 
 	if (std::rand() % 2)
-		std::cout << _target << " has been robotomized successfully." << std::endl;
+		std::cout << getTarget() << " has been robotomized successfully." << std::endl;
 	else
-		std::cout << "Robotomy failed on " << _target << "." << std::endl;
+		std::cout << "Robotomy failed on " << getTarget() << "." << std::endl;
 
 	return ;
 }

@@ -6,6 +6,7 @@ const int	AForm::LOWEST_GRADE = Bureaucrat::LOWEST_GRADE;
 
 AForm::AForm():
 	_name("(AForm)"),
+	_target("(target)"),
 	_gradeToSign(LOWEST_GRADE),
 	_gradeToExecute(LOWEST_GRADE),
 	_signed(false)
@@ -13,16 +14,19 @@ AForm::AForm():
 
 AForm::AForm(const AForm &src):
 	_name(src._name),
+	_target(src._target),
 	_gradeToSign(src._gradeToSign),
 	_gradeToExecute(src._gradeToExecute),
 	_signed(src._signed)
 {}
 
 AForm::AForm(std::string name,
+			 std::string target,
 			 int gradeToSign,
 			 int gradeToExecute,
 			 bool sign):
 	_name(name),
+	_target(target),
 	_gradeToSign(gradeToSign),
 	_gradeToExecute(gradeToExecute),
 	_signed(sign)
@@ -67,6 +71,11 @@ int		AForm::getGradeToSign() const
 int		AForm::getGradeToExecute() const
 {
 	return (this->_gradeToExecute);
+}
+
+std::string	AForm::getTarget() const
+{
+	return (this->_target);
 }
 
 void	AForm::beSigned(Bureaucrat const &signer)

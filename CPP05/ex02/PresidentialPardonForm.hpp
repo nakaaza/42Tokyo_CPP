@@ -7,8 +7,6 @@
 class PresidentialPardonForm: public AForm {
 
 private:
-	std::string	_target;
-
 	PresidentialPardonForm();
 
 	virtual void	doExecute() const;

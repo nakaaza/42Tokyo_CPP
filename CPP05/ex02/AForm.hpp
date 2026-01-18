@@ -12,6 +12,7 @@ private:
 	const static int	LOWEST_GRADE;
 
 	const std::string	_name;
+	const std::string	_target;
 	const int			_gradeToSign;
 	const int			_gradeToExecute;
 	bool				_signed;
@@ -25,9 +26,10 @@ public:
 	AForm();
 	AForm(const AForm &src);
 	AForm(std::string name,
-		 int gradeToSign = HIGHEST_GRADE,
-		 int gradeToExecute = HIGHEST_GRADE,
-		 bool sign = false
+		  std::string target,
+		  int gradeToSign = HIGHEST_GRADE,
+		  int gradeToExecute = HIGHEST_GRADE,
+		  bool sign = false
 		);
 	AForm &operator=(const AForm &rhs);
 	virtual ~AForm();
@@ -36,6 +38,7 @@ public:
 	bool		isSigned() const;
 	int			getGradeToSign() const;
 	int			getGradeToExecute() const;
+	std::string	getTarget() const;
 
 	void		beSigned(Bureaucrat const &signer);
 	void		execute(Bureaucrat const &executor) const;
