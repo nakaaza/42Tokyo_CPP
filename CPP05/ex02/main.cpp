@@ -22,7 +22,7 @@ int main()
 	std::cout << chief << std::endl;
 	std::cout << vPresident << std::endl;
 	std::cout << std::endl;
-	
+
 	std::cout << "=== ShrubberyCreationForm test" << std::endl;
 	ShrubberyCreationForm s1("shrubbery");
 	std::cout << s1 << std::endl;
@@ -33,7 +33,7 @@ int main()
 	manager.signForm(s1);		// -> s1 already signed
 	manager.executeForm(s1);	// -> manager can execute s1
 	std::cout << "===" << std::endl << std::endl;
-	
+
 	std::cout << "=== RobotomyRequestForm test" << std::endl;
 	RobotomyRequestForm s2("robotomy");
 	std::cout << s2 << std::endl;
@@ -41,10 +41,10 @@ int main()
 	manager.signForm(s2);		// -> manager can't sign s2 because the grade too low.
 	director.signForm(s2);		// -> director can sign s2
 	director.executeForm(s2);	// -> director can't execute s2 because the grade too low
-	manager.signForm(s2);		// -> s2 already signed
-	manager.executeForm(s2);	// -> manager can execute s2
+	executive.signForm(s2);		// -> s2 already signed
+	executive.executeForm(s2);	// -> executive can execute s2
 	std::cout << "===" << std::endl << std::endl;
-	
+
 	std::cout << "=== PresidentPardonForm test" << std::endl;
 	PresidentialPardonForm s3("president");
 	std::cout << s3 << std::endl;
@@ -56,6 +56,5 @@ int main()
 	vPresident.executeForm(s3);	// -> vPresident can execute s3
 	std::cout << "===" << std::endl << std::endl;
 
-	
 	return (0);
 }

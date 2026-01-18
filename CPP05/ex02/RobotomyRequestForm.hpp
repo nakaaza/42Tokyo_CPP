@@ -11,7 +11,7 @@ private:
 
 	RobotomyRequestForm();
 
-	virtual void	doExecute(Bureaucrat const &executor) const;
+	virtual void	doExecute() const;
 	
 
 public:

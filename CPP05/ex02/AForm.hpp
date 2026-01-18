@@ -19,7 +19,7 @@ private:
 	static bool			validateGrade(int grade);
 
 protected:
-	virtual void	doExecute(Bureaucrat const &executor) const = 0;
+	virtual void	doExecute() const = 0;
 
 public:
 	AForm();
@@ -68,6 +68,11 @@ public:
 	class NotSignedException : public std::exception {
 		public:
 			virtual const char* what() const throw();
+	};
+
+	class FileOpenException : public std::exception {
+	public:
+		virtual const char* what() const throw();
 	};
 };
 

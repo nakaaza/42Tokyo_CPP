@@ -85,7 +85,7 @@ void	AForm::execute(Bureaucrat const &executor) const
 		throw NotSignedException();
 	if (executor.getGrade() > getGradeToExecute())
 		throw GradeTooLowToExecuteException();
-	doExecute(executor);
+	doExecute();
 }
 
 std::ostream &operator<<(std::ostream &os, const AForm &f)
@@ -113,7 +113,7 @@ const char* AForm::GradeTooLowToSignException::what() const throw() {
 }
 
 const char* AForm::GradeTooLowToExecuteException::what() const throw() {
-	return "ERROR: AForm: grade too low to sign.";
+	return "ERROR: AForm: grade too low to execute.";
 }
 
 const char* AForm::AlreadySignedException::what() const throw() {
@@ -122,4 +122,8 @@ const char* AForm::AlreadySignedException::what() const throw() {
 
 const char* AForm::NotSignedException::what() const throw() {
 	return "ERROR: AForm: not signed when execution";
+}
+
+const char*	AForm::FileOpenException::what() const throw() {
+	return "ERROR: AForm: failed to open file";
 }

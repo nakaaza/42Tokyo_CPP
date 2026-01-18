@@ -1,5 +1,5 @@
 #include "ShrubberyCreationForm.hpp"
-#include <iostream>
+#include <fstream>
 
 ShrubberyCreationForm::ShrubberyCreationForm(const std::string target):
 	AForm("ShrubberyCreationForm", 145, 137),
@@ -21,8 +21,21 @@ ShrubberyCreationForm &ShrubberyCreationForm::operator=(const ShrubberyCreationF
 
 ShrubberyCreationForm::~ShrubberyCreationForm() {}
 
-void	ShrubberyCreationForm::doExecute(Bureaucrat const &executor) const
+void	ShrubberyCreationForm::doExecute() const
 {
-	std::cout << "ShrubberyCreationForm::doExecute() by" << executor.getName() << " with target = " << _target << std::endl;
+	std::ofstream ofs((_target + "_shrubbery").c_str());
+	if (!ofs)
+		throw AForm::FileOpenException();
+
+	ofs <<
+		"       _-_\n"
+		"    /~~   ~~\\\n"
+		" /~~         ~~\\\n"
+		"{               }\n"
+		" \\  _-     -_  /\n"
+		"   ~  \\\\ //  ~\n"
+		"_- -   | | _- _\n"
+		"  _ -  | |   -_\n"
+		"      // \\\\\n";
 	return ;
 }
