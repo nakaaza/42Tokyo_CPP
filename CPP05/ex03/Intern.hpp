@@ -7,9 +7,6 @@
 
 class Intern {
 
-protected:
-
-
 private:
 	static AForm* makeShrubberyCreationForm(const std::string& target);
 	static AForm* makeRobotomyRequestForm(const std::string& target);
