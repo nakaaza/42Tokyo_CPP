@@ -81,13 +81,14 @@ void	Form::beSigned(Bureaucrat const &signer)
 
 std::ostream &operator<<(std::ostream &os, const Form &f)
 {
-	os << f.getName() << ": ";
+	os << f.getName() << "[";
 	if (f.isSigned())
-		os << "SIGNED. ";
+		os << "SIGNED";
 	else
-		os << "NOT SIGNED. ";
-	os << "Needs grade " << f.getGradeToSign() << " to sign. ";
-	os << "Needs grade " << f.getGradeToExecute() << " to execute.";
+		os << "NOT SIGNED";
+	os << "](";
+	os << "Grade to sign: " << f.getGradeToSign() << ", ";
+	os << "Grade to execute: " << f.getGradeToExecute() << ")";
 	return (os);
 }
 

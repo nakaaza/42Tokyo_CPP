@@ -99,13 +99,14 @@ void	AForm::execute(Bureaucrat const &executor) const
 
 std::ostream &operator<<(std::ostream &os, const AForm &f)
 {
-	os << f.getName() << ": ";
+	os << f.getName() << "[";
 	if (f.isSigned())
-		os << "SIGNED. ";
+		os << "SIGNED";
 	else
-		os << "NOT SIGNED. ";
-	os << "Needs grade " << f.getGradeToSign() << " to sign. ";
-	os << "Needs grade " << f.getGradeToExecute() << " to execute.";
+		os << "NOT SIGNED";
+	os << "](Target: " << f.getTarget() << ", ";
+	os << "Grade to sign: " << f.getGradeToSign() << ", ";
+	os << "Grade to execute: " << f.getGradeToExecute() << ")";
 	return (os);
 }
 

@@ -104,7 +104,7 @@ std::ostream &operator<<(std::ostream &os, const AForm &f)
 		os << "SIGNED";
 	else
 		os << "NOT SIGNED";
-	os << "](Target:" << f.getTarget() << ", ";
+	os << "](Target: " << f.getTarget() << ", ";
 	os << "Grade to sign: " << f.getGradeToSign() << ", ";
 	os << "Grade to execute: " << f.getGradeToExecute() << ")";
 	return (os);
