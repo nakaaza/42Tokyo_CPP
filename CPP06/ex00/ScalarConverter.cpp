@@ -1,39 +1,33 @@
 #include "ScalarConverter.hpp"
+#include "TypeDetector.hpp"
 #include <iomanip>
 #include <iostream>
 #include <cmath>
 #include <limits>
 
-void	print_char(double val)
+void	printChar(char val, bool impossible = false)
 {
 	std::cout << "char: ";
-	if (std::isnan(val) || std::isinf(val))
+	if (impossible)
 		std::cout << "impossible";
-	else {
-		char casted = static_cast<unsigned int>(val);
-		if (std::isprint(casted))
-			std::cout << "'" << casted << "'";
-		else
-			std::cout << "Non displayable";
-	}
+	else if (std::isprint(val))
+		std::cout << "'" << val << "'";
+	else
+		std::cout << "Non displayable";
 	std::cout << std::endl;
 }
 
-void	print_int(double val)
+void	printInt(int val, bool impossible = false)
 {
 	std::cout << "int: ";
-	if (std::isnan(val) || std::isinf(val)
-		|| val < std::numeric_limits<int>::min()
-		|| val > std::numeric_limits<int>::max())
+	if (impossible)
 		std::cout << "impossible";
-	else {
-		int casted = static_cast<int>(val);
-		std::cout << casted;
-	}
+	else
+		std::cout << val;
 	std::cout << std::endl;
 }
 
-void	print_float(double val)
+void	printFloat(double val)
 {
 	std::cout << "float: ";
 	if (std::isnan(val) || std::isinf(val))
@@ -53,7 +47,7 @@ void	print_float(double val)
 	std::cout << std::endl;
 }
 
-void	print_double(double val)
+void	printDouble(double val)
 {
 	std::cout << "double: ";
 	if (std::isnan(val) || std::isinf(val))
@@ -69,13 +63,71 @@ void	print_double(double val)
 	std::cout << std::endl;
 }
 
+void	convertChar(const std::string &target)
+{
+	unsigned char val = target[0];
+	printChar(static_cast<unsigned char>(val));
+	printInt(static_cast<int>(val));
+	printFloat(static_cast<float>(val));
+	printDouble(static_cast<double>(val));
+}
+
+void	convertInt(const std::string &target)
+{
+	char *end;
+	int val = strtol(target.c_str(), &end, 10);
+	printChar(static_cast<unsigned char>(val));
+	printInt(static_cast<int>(val));
+	printFloat(static_cast<float>(val));
+	printDouble(static_cast<double>(val));
+}
+
+void	convertFloat(const std::string &target)
+{
+	char *end;
+	float val = strtof(target.c_str(), &end);
+	bool impossible = (std::isnan(val) || std::isinf(val));
+	printChar(static_cast<unsigned char>(val), impossible);
+	printInt(static_cast<int>(val), impossible);
+	printFloat(static_cast<float>(val));
+	printDouble(static_cast<double>(val));
+}
+
+void	convertDouble(const std::string &target)
+{
+	char *end;
+	double val = strtod(target.c_str(), &end);
+	bool impossible = (std::isnan(val) || std::isinf(val));
+	printChar(static_cast<unsigned char>(val), impossible);
+	printInt(static_cast<int>(val), impossible);
+	printFloat(static_cast<float>(val));
+	printDouble(static_cast<double>(val));
+}
+
 void	ScalarConverter::convert(const std::string &target)
 {
-	char	*end = NULL;
-	double	val = strtod(target.c_str(), &end);
+	TypeDetector::Type	detectedType = TypeDetector::detect(target);
 
-	print_char(val);
-	print_int(val);
-	print_float(val);
-	print_double(val);
+	switch (detectedType)
+	{
+		case TypeDetector::kCHAR:
+			std::cout << "char detected" << std::endl;
+			convertChar(target);
+			break;
+		case TypeDetector::kINT:
+			std::cout << "int detected" << std::endl;
+			convertInt(target);
+			break;
+		case TypeDetector::kFLOAT:
+			std::cout << "float detected" << std::endl;
+			convertFloat(target);
+			break;
+		case TypeDetector::kDOUBLE:
+			std::cout << "double detected" << std::endl;
+			convertDouble(target);
+			break;
+		default:
+			std::cout << "invalid detected" << std::endl;
+			break;
+	}
 }
