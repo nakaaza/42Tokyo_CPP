@@ -27,22 +27,17 @@ void	printInt(int val, bool impossible = false)
 	std::cout << std::endl;
 }
 
-void	printFloat(double val)
+void	printFloat(double val, bool impossible = false)
 {
 	std::cout << "float: ";
-	if (std::isnan(val) || std::isinf(val))
-		std::cout << val << 'f';
-	else if (val < -std::numeric_limits<float>::max()
-			 || val > std::numeric_limits<float>::max() )
+	if (impossible)
 		std::cout << "impossible";
 	else {
-		float casted = static_cast<float>(val);
 		int   rounded = static_cast<int>(val);
-		if (casted == rounded)
+		if (val == rounded)
 			std::cout << std::fixed << std::setprecision(1);
-		else
-			std::cout << std::fixed << std::setprecision(6);
-		std::cout << casted << 'f';
+		std::cout << val << 'f';
+		std::cout.unsetf(std::ios::fixed);
 	}
 	std::cout << std::endl;
 }
@@ -50,16 +45,11 @@ void	printFloat(double val)
 void	printDouble(double val)
 {
 	std::cout << "double: ";
-	if (std::isnan(val) || std::isinf(val))
-		std::cout << val;
-	else {
-		int rounded = static_cast<int>(val);
-		if (val == rounded)
-			std::cout << std::fixed << std::setprecision(1);
-		else
-			std::cout << std::fixed << std::setprecision(6);
-		std::cout << val;
-	}
+	int rounded = static_cast<int>(val);
+	if (val == rounded)
+		std::cout << std::fixed << std::setprecision(1);
+	std::cout << val;
+	std::cout.unsetf(std::ios::fixed);
 	std::cout << std::endl;
 }
 
@@ -72,32 +62,32 @@ void	convertChar(const std::string &target)
 	printDouble(static_cast<double>(val));
 }
 
-void	convertInt(const std::string &target)
+void	convertInt(double dVal)
 {
-	char *end;
-	int val = strtol(target.c_str(), &end, 10);
+	int val = static_cast<int>(dVal);
 	printChar(static_cast<unsigned char>(val));
 	printInt(static_cast<int>(val));
 	printFloat(static_cast<float>(val));
 	printDouble(static_cast<double>(val));
 }
 
-void	convertFloat(const std::string &target)
+void	convertFloat(double dVal)
 {
-	char *end;
-	float val = strtof(target.c_str(), &end);
-	bool impossible = (std::isnan(val) || std::isinf(val));
+	float val = static_cast<float>(dVal);
+	bool impossible = (std::isnan(val) || std::isinf(val)
+						|| dVal > std::numeric_limits<int>::max()
+						|| dVal < std::numeric_limits<int>::min());
 	printChar(static_cast<unsigned char>(val), impossible);
 	printInt(static_cast<int>(val), impossible);
 	printFloat(static_cast<float>(val));
 	printDouble(static_cast<double>(val));
 }
 
-void	convertDouble(const std::string &target)
+void	convertDouble(double val)
 {
-	char *end;
-	double val = strtod(target.c_str(), &end);
-	bool impossible = (std::isnan(val) || std::isinf(val));
+	bool impossible = (std::isnan(val) || std::isinf(val)
+						|| val > std::numeric_limits<int>::max()
+						|| val < std::numeric_limits<int>::min());
 	printChar(static_cast<unsigned char>(val), impossible);
 	printInt(static_cast<int>(val), impossible);
 	printFloat(static_cast<float>(val));
@@ -106,7 +96,8 @@ void	convertDouble(const std::string &target)
 
 void	ScalarConverter::convert(const std::string &target)
 {
-	TypeDetector::Type	detectedType = TypeDetector::detect(target);
+	double				dVal;
+	TypeDetector::Type	detectedType = TypeDetector::detect(target, &dVal);
 
 	switch (detectedType)
 	{
@@ -116,15 +107,15 @@ void	ScalarConverter::convert(const std::string &target)
 			break;
 		case TypeDetector::kINT:
 			std::cout << "int detected" << std::endl;
-			convertInt(target);
+			convertInt(dVal);
 			break;
 		case TypeDetector::kFLOAT:
 			std::cout << "float detected" << std::endl;
-			convertFloat(target);
+			convertFloat(dVal);
 			break;
 		case TypeDetector::kDOUBLE:
 			std::cout << "double detected" << std::endl;
-			convertDouble(target);
+			convertDouble(dVal);
 			break;
 		default:
 			std::cout << "invalid detected" << std::endl;

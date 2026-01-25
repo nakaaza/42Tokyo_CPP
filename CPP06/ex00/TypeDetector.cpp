@@ -1,15 +1,18 @@
 #include "TypeDetector.hpp"
-#include <regex>
+#include <limits>
+#include <cmath>
 
-TypeDetector::Type	TypeDetector::detect(const std::string &target)
+TypeDetector::Type	TypeDetector::detect(const std::string &target, double *dVal)
 {
+	char	*end;
+	*dVal = strtod(target.c_str(), &end);
 	if (detectChar(target))
 		return kCHAR;
-	if (detectInt(target))
+	if (detectInt(*dVal, end))
 		return kINT;
-	if (detectFloat(target))
+	if (detectFloat(end))
 		return kFLOAT;
-	if (detectDouble(target))
+	if (detectDouble(end))
 		return kDOUBLE;
 	return kINVALID;
 }
@@ -19,65 +22,28 @@ bool	TypeDetector::detectChar(const std::string &target)
 	return (target.size() == 1 && !isdigit(target[0]));
 }
 
-bool	TypeDetector::detectInt(const std::string &target)
+bool	TypeDetector::detectInt(double dVal, char *end)
 {
-	std::string tmp	= target;
-	size_t		i	= 0;
-	if (tmp[0] == '-' || tmp[0] == '+')
-		++i;
-	while (i < tmp.size())
-	{
-		if (!isdigit(tmp[i]))
-			return false;
-		++i;
-	}
+	if (*end != '\0')
+		return false;
+	if (dVal > static_cast<double>(std::numeric_limits<int>::max())
+		|| dVal < static_cast<double>(std::numeric_limits<int>::min()))
+		return false;
+	if (dVal != static_cast<int>(dVal))
+		return false;
 	return true;
 }
 
-bool	TypeDetector::detectFloat(const std::string &target)
+bool	TypeDetector::detectFloat(char *end)
 {
-	std::string tmp	= target;
-	size_t		i	= 0;
-	bool		has_point = false;
-	if (tmp[0] == '-' || tmp[0] == '+')
-		++i;
-	tmp = tmp.substr(i);
-	if (tmp == "inff" || tmp == "nanf")
+	if ((*end == 'f' || *end == 'F') && *(end + 1) == '\0')
 		return true;
-	while (i < tmp.size() - 1)
-	{
-		if (!isdigit(tmp[i]))
-		{
-			if (!has_point && tmp[i] == '.')
-				has_point = true;
-			else
-				return false;
-		}
-		++i;
-	}
-	return (tmp[i] == 'f');	
+	return false;
 }
 
-bool	TypeDetector::detectDouble(const std::string &target)
+bool	TypeDetector::detectDouble(char *end)
 {
-	std::string tmp	= target;
-	size_t		i	= 0;
-	bool		has_point = false;
-	if (tmp[0] == '-' || tmp[0] == '+')
-		++i;
-	tmp = tmp.substr(i);
-	if (tmp == "inf" || tmp == "nan")
+	if (*end == '\0')
 		return true;
-	while (i < tmp.size())
-	{
-		if (!isdigit(tmp[i]))
-		{
-			if (!has_point && tmp[i] == '.')
-				has_point = true;
-			else
-				return false;
-		}
-		++i;
-	}
-	return true;	
+	return false;
 }

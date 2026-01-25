@@ -12,9 +12,9 @@ private:
 	~TypeDetector();
 
 	static bool detectChar(const std::string &target);
-	static bool detectInt(const std::string &target);
-	static bool detectFloat(const std::string &target);
-	static bool detectDouble(const std::string &target);
+	static bool detectInt(double dVal, char *end);
+	static bool detectFloat(char *end);
+	static bool detectDouble(char *end);
 
 public:
 	enum Type { 
@@ -25,7 +25,7 @@ public:
 		kINVALID = -1
 	};
 
-	static Type	detect(const std::string &target);
+	static Type	detect(const std::string &target, double *dVal);
 
 };
 
