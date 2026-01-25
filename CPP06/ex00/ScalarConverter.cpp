@@ -102,23 +102,19 @@ void	ScalarConverter::convert(const std::string &target)
 	switch (detectedType)
 	{
 		case TypeDetector::kCHAR:
-			std::cout << "char detected" << std::endl;
 			convertChar(target);
 			break;
 		case TypeDetector::kINT:
-			std::cout << "int detected" << std::endl;
 			convertInt(dVal);
 			break;
 		case TypeDetector::kFLOAT:
-			std::cout << "float detected" << std::endl;
 			convertFloat(dVal);
 			break;
 		case TypeDetector::kDOUBLE:
-			std::cout << "double detected" << std::endl;
 			convertDouble(dVal);
 			break;
 		default:
-			std::cout << "invalid detected" << std::endl;
+			std::cout << "Couldn't detect type of \"" << target << "\"" << std::endl;
 			break;
 	}
 }
