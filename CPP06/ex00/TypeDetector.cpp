@@ -6,6 +6,8 @@ TypeDetector::Type	TypeDetector::detect(const std::string &target, double *dVal)
 {
 	char	*end;
 	*dVal = strtod(target.c_str(), &end);
+	if (target == "")
+		return kINVALID;
 	if (detectChar(target))
 		return kCHAR;
 	if (detectInt(*dVal, end))
