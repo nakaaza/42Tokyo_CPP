@@ -35,13 +35,18 @@ Base*	generate(void)
 void	identify(Base* p)
 {
 	if (!p)
+	{
+		std::cerr << "ERROR: Couldn't identify type of p since it's NULL" << std::endl;
 		return ;
+	}
 	if (dynamic_cast<A*>(p))
 		std::cout << "A";
 	else if (dynamic_cast<B*>(p))
 		std::cout << "B";
 	else if (dynamic_cast<C*>(p))
 		std::cout << "C";
+	else
+		std::cerr << "ERROR: Couldn't identify type of p since no match type found." << std::endl;
 
 }
 
@@ -62,4 +67,5 @@ void	identify(Base& p)
 		std::cout << "C";
 		return ;
 	} catch (std::exception& e) {}
+	std::cerr << "ERROR: Couldn't identify type of p since no match type found." << std::endl;
 }
