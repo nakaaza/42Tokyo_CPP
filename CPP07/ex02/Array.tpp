@@ -1,4 +1,6 @@
-#include "Array.hpp"
+#ifndef ARRAY_TPP
+# define ARRAY_TPP
+
 #include <stdexcept>
 
 template <typename T>
@@ -61,3 +63,5 @@ template <typename T>
 unsigned int	Array<T>::size() const {
 	return this->_size;
 }
+
+#endif // ARRAY_TPP
