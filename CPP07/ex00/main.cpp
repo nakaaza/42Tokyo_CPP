@@ -32,9 +32,11 @@ int	main(void)
 	std::string s2 = "Kyoto";
 	test(s1, s2);
 
-	void	*p1;
-	void	*p2;
+	int	*p1 = new int(42);
+	int	*p2 = new int(-42);
 	test(p1, p2);
+	delete p1;
+	delete p2;
 
 	bool	b1 = true;
 	bool	b2 = false;
