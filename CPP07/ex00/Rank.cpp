@@ -22,6 +22,6 @@ bool	Rank::operator<(const Rank &rhs) const {
 
 std::ostream &operator<<(std::ostream &os, const Rank &rank)
 {
-	os << rank.val;
+	os << "Rank(" << rank.val << ")";
 	return (os);
 }
