@@ -2,6 +2,8 @@
 # define SPAN_HPP
 
 #include <vector>
+#include <exception>
+
 class Span {
 
 protected:
@@ -10,7 +12,7 @@ protected:
 private:
 	Span();
 
-	unsigned int		_size;
+	unsigned int		_max_size;
 	std::vector<int>	_data;
 
 public:
@@ -24,6 +26,12 @@ public:
 	unsigned int	longestSpan();
 
 	// TODO: addNumbers with range iterator
+
+	class AlreadyFull: public std::exception
+	{
+		public:
+			virtual const char* what() const throw();
+	}
 };
 
 #endif // SPAN_HPP
