@@ -20,7 +20,7 @@ void	respect(const std::string &name)
 }
 
 template <typename T>
-void	print_test_arr(T arr[], size_t len)
+void	print_test_arr(T *arr, size_t len)
 {
 	std::cout << "arr: [";
 	for (size_t i = 0; i < len; i++)
