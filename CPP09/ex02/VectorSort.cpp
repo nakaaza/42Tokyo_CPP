@@ -94,14 +94,14 @@ void VectorSort::fordJohnsonSort(std::vector<int>& vec)
 	}
 
 	// 6) pend[0] を先に挿入（一般にそうする）
-	{
-		const Node& s = pend[0];
-		std::size_t hi = mainChain.size();
-		if (s.pairId != static_cast<std::size_t>(-1))
-			hi = findBigPos(mainChain, s.pairId);
-		std::size_t pos = lowerBoundNode(mainChain, s.value, hi);
-		mainChain.insert(mainChain.begin() + pos, s);
-	}
+	// {
+		// const Node& s = pend[0];
+		// std::size_t hi = mainChain.size();
+		// if (s.pairId != static_cast<std::size_t>(-1))
+		// 	hi = findBigPos(mainChain, s.pairId);
+		// std::size_t pos = lowerBoundNode(mainChain, s.value, hi);
+		mainChain.insert(mainChain.begin(), pend[0]);
+	// }
 
 	// 7) Jacobsthal 順に残りを挿入
 	std::vector<std::size_t> order = buildJacobsthalOrder(pend.size());

@@ -6,21 +6,20 @@
 
 class VectorSort {
 public:
-	// Ford–Johnson (Merge-Insertion Sort)
 	static void execute(std::vector<int>& vec);
 
 private:
 	struct Pair {
-		int         big;
-		int         small;
-		bool        hasSmall;
-		std::size_t id;
+		int			big;
+		int			small;
+		bool		hasSmall;
+		std::size_t	id;
 	};
 
 	struct Node {
-		int         value;
-		std::size_t pairId;   // big/small が属するペアを識別（重複対策）
-		bool        isBig;    // main chain 側かどうか
+		int			value;
+		std::size_t	pairId;
+		bool		isBig;
 	};
 
 	static void fordJohnsonSort(std::vector<int>& vec);
