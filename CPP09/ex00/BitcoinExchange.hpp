@@ -21,12 +21,6 @@ public:
 	static void		init_data(const std::string &filename);
 	static void		execute(const std::string& filename);
 	static double	get_rate(const std::string& date);
-
-	class BitcoinExchangeNotFound: public std::exception
-	{
-		public:
-			virtual const char* what() const throw();
-	};
 };
 
 #endif // BITCOINEXCHANGE_HPP
