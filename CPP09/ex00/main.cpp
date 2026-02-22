@@ -13,5 +13,10 @@ int	main(int argc, char *argv[])
 	BitcoinExchange::init_data(db_filename);
 
 	std::string	input_filename = argv[1];
-	BitcoinExchange::execute(input_filename);
+	try {
+		BitcoinExchange::execute(input_filename);
+	} catch (const std::exception &e) {
+		std::cerr << e.what() << std::endl;
+		return 1;
+	}
 }
