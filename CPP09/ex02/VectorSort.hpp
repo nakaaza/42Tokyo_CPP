@@ -22,23 +22,21 @@ private:
 		bool		isBig;
 	};
 
-	static void fordJohnsonSort(std::vector<int>& vec);
+	static void
+	fordJohnsonSort(std::vector<int>& vec);
 
-	// Jacobsthal insertion order を生成（pend の index 群）
-	static std::vector<std::size_t> buildJacobsthalOrder(std::size_t pendSize);
+	static std::vector<Pair>
+	makePairs(const std::vector<int>& vec, bool& hasStraggler, int& straggler);
 
-	// main chain 上で pairId の big ノード位置を探す（線形でOK）
-	static std::size_t findBigPos(const std::vector<Node>& mainChain, std::size_t pairId);
+	static std::vector<Pair>
+	reorderPairsBySortedBigs(const std::vector<Pair>& pairs,
+							 const std::vector<int>& sortedBigs);
 
-	// mainChain[0, hi) の範囲で value の lower_bound を返す
-	static std::size_t lowerBoundNode(const std::vector<Node>& mainChain, int value, std::size_t hi);
-
-	// vec -> pairs
-	static std::vector<Pair> makePairs(const std::vector<int>& vec, bool& hasStraggler, int& straggler);
-
-	// big のソート結果から pairs を big 昇順に並べ替える（重複対応）
-	static std::vector<Pair> reorderPairsBySortedBigs(const std::vector<Pair>& pairs,
-													const std::vector<int>& sortedBigs);
+	static std::vector<std::size_t>
+	buildJacobsthalOrder(std::size_t pendSize);
+	
+	static void
+	binaryInsertion(std::vector<Node>& mainChain, Node n);
 };
 
 #endif
