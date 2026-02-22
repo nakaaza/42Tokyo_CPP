@@ -6,7 +6,7 @@
 
 class DequeSort {
 public:
-	static void execute(std::deque<int>& vec);
+	static void execute(std::deque<int>& deq);
 
 private:
 	struct Pair {
@@ -23,10 +23,10 @@ private:
 	};
 
 	static void
-	fordJohnsonSort(std::deque<int>& vec);
+	fordJohnsonSort(std::deque<int>& deq);
 
 	static std::deque<Pair>
-	makePairs(const std::deque<int>& vec, bool& hasStraggler, int& straggler);
+	makePairs(const std::deque<int>& deq, bool& hasStraggler, int& straggler);
 
 	static std::deque<Pair>
 	reorderPairsBySortedBigs(const std::deque<Pair>& pairs,

@@ -2,20 +2,20 @@
 #include <deque>
 
 void
-DequeSort::execute(std::deque<int>& vec)
+DequeSort::execute(std::deque<int>& deq)
 {
-	fordJohnsonSort(vec);
+	fordJohnsonSort(deq);
 }
 
 void
-DequeSort::fordJohnsonSort(std::deque<int>& vec)
+DequeSort::fordJohnsonSort(std::deque<int>& deq)
 {
-	if (vec.size() <= 1)
+	if (deq.size() <= 1)
 		return;
 
 	bool hasStraggler = false;
 	int  straggler = 0;
-	std::deque<Pair> pairs = makePairs(vec, hasStraggler, straggler);
+	std::deque<Pair> pairs = makePairs(deq, hasStraggler, straggler);
 
 	std::deque<int> bigs;
 	for (std::size_t i = 0; i < pairs.size(); ++i)
@@ -64,27 +64,27 @@ DequeSort::fordJohnsonSort(std::deque<int>& vec)
 		}
 	}
 
-	vec.clear();
+	deq.clear();
 	for (std::size_t i = 0; i < mainChain.size(); ++i)
-		vec.push_back(mainChain[i].value);
+		deq.push_back(mainChain[i].value);
 }
 
 std::deque<DequeSort::Pair>
-DequeSort::makePairs(const std::deque<int>& vec, bool& hasStraggler, int& straggler)
+DequeSort::makePairs(const std::deque<int>& deq, bool& hasStraggler, int& straggler)
 {
 	std::deque<Pair> pairs;
 
 	hasStraggler = false;
 
 	std::size_t pid = 0;
-	for (std::size_t i = 0; i < vec.size(); i += 2) {
-		if (i + 1 >= vec.size()) {
+	for (std::size_t i = 0; i < deq.size(); i += 2) {
+		if (i + 1 >= deq.size()) {
 			hasStraggler = true;
-			straggler = vec[i];
+			straggler = deq[i];
 			break;
 		}
-		const int a = vec[i];
-		const int b = vec[i + 1];
+		const int a = deq[i];
+		const int b = deq[i + 1];
 
 		Pair p;
 		p.id = pid++;
