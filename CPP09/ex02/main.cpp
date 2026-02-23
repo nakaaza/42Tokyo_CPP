@@ -5,8 +5,7 @@
 #include <limits>
 #include <ctime>
 
-#include "VectorSort.hpp"
-#include "DequeSort.hpp"
+#include "PmergeMe.hpp"
 
 static bool parsePositiveInt(const std::string& s, int& out)
 {
@@ -86,11 +85,11 @@ int main(int argc, char** argv)
 	printVector(vec);
 
 	std::clock_t vStart = std::clock();
-	VectorSort::execute(vec);
+	PmergeMe::VectorSort::execute(vec);
 	std::clock_t vEnd = std::clock();
 
 	std::clock_t dStart = std::clock();
-	DequeSort::execute(deq);
+	PmergeMe::DequeSort::execute(deq);
 	std::clock_t dEnd = std::clock();
 
 	std::cout << "After : ";
